@@ -1,0 +1,29 @@
+# PATHS
+train_dataset: ./data/train
+validation_dataset: ./data/eval
+predict_dataset: ./data/test
+
+# load_model_path: ./CheckPoint/experiment_2023_04_20_04_00_18/ckpt/weights.200-0.058
+additional_functions_file: ./main.py
+output_path: ./
+
+# OPTIMIZATION OPTIONS
+loss: CategoricalCrossentropy
+optimizer:
+  type: Adam
+  learning_rate: # define a schedule
+    type: ExponentialDecay
+    initial_learning_rate: 0.001
+    decay_steps: 50000
+    decay_rate: 0.6
+metrics: [CategoricalAccuracy]
+
+# TRAINING OPTIONS
+batch_size: 14
+epochs: 200
+# epoch_size: 6050
+shuffle_training_set: True
+shuffle_validation_set: True
+val_samples: 800
+val_frequency: 1
+execute_gpu: True
